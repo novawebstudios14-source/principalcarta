@@ -32,7 +32,7 @@ function fallbackLetter(data) {
     const family = data.hasChildren
       ? 'Você já é parte de uma família que cresceu em amor, e logo conhecerá quem já espera por você.'
       : 'Tudo em mim aprende uma nova forma de amar enquanto espero por você.';
-    return `Ainda não vi todos os seus detalhes, mas já reconheço a presença que você trouxe para os meus dias. Há ${data.weeks} semanas, meu coração começou a contar o tempo de um jeito diferente: não em horas, mas em sonhos, planos e pequenos instantes de espera.\n\n${family} Quero que um dia você saiba que, muito antes do nosso primeiro encontro, já havia um lugar inteiro preparado para você dentro de mim.\n\nQue esta carta guarde um pedacinho do começo da nossa história — o tempo em que eu ainda esperava para tocar suas mãos, mas já amava tudo o que você seria.`;
+    return `Ainda não vi todos os seus detalhes, mas já reconheço a presença que você trouxe para os meus dias. Há ${data.weeks} semanas, meu coração começou a contar o tempo de um jeito diferente: não em horas, mas em sonhos, planos e pequenos instantes de espera.\n\n${family} Quero que um dia você saiba que, muito antes do nosso primeiro encontro, já havia um lugar inteiro preparado para você dentro de mim.\n\nQue esta carta guarde um pedacinho do começo da nossa história. Era o tempo em que eu ainda esperava para tocar suas mãos, mas já amava tudo o que você seria.`;
   }
 
   const age = data.childAge === 0 ? 'ainda tão pequeno' : `aos ${data.childAge} ${data.childAge === 1 ? 'ano' : 'anos'}`;
@@ -66,7 +66,7 @@ export async function generateWithGroq(data) {
         temperature: 0.75,
         max_completion_tokens: 620,
         messages: [
-          {role: 'system', content: 'Você escreve cartas afetivas em português brasileiro, de uma mãe ou responsável para uma criança. Use somente os fatos presentes no JSON. Escreva exatamente 3 parágrafos curtos, íntimos, delicados e naturais, entre 500 e 850 caracteres no total. A carta será exibida com o nome da criança e assinatura fora do texto: não escreva saudação, título ou assinatura. Não pressuponha gênero, aparência, saúde, data do parto, relacionamento familiar, religião ou qualquer fato ausente. Não dê orientação médica. Não use clichês comerciais, emojis, markdown ou hashtags. Se a pessoa está gestante, reconheça com delicadeza a espera e a quantidade de semanas. Se não está gestante, celebre a fase atual conforme a idade. Retorne apenas a carta.'},
+          {role: 'system', content: 'Você escreve cartas afetivas em português brasileiro, de uma mãe ou responsável para uma criança. Use somente os fatos presentes no JSON. Escreva exatamente 3 parágrafos curtos, íntimos, delicados e naturais, entre 500 e 850 caracteres no total. A carta será exibida com o nome da criança e assinatura fora do texto: não escreva saudação, título ou assinatura. Não pressuponha gênero, aparência, saúde, data do parto, relacionamento familiar, religião ou qualquer fato ausente. Não dê orientação médica. Não use clichês comerciais, emojis, markdown, hashtags, travessões ou hífens como recurso estilístico. Se a pessoa está gestante, reconheça com delicadeza a espera e a quantidade de semanas. Se não está gestante, celebre a fase atual conforme a idade. Retorne apenas a carta.'},
           {role: 'user', content: `FATOS AUTORIZADOS:\n${JSON.stringify(facts)}`}
         ]
       })
@@ -74,6 +74,7 @@ export async function generateWithGroq(data) {
     if (!response.ok) throw new Error(`Groq HTTP ${response.status}`);
     const payload = await response.json();
     const letter = cleanText(payload.choices?.[0]?.message?.content, 1200)
+      .replace(/[—–]/g, ',')
       .replace(/\s*\n\s*/g, '\n\n')
       .replace(/\n{3,}/g, '\n\n');
     if (letter.length < 250) throw new Error('Resposta incompleta');

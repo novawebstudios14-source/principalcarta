@@ -37,3 +37,12 @@ test('gera imagem JPG no formato vertical de Stories',async()=>{
   assert.match(script,/canvas\.width=1080;canvas\.height=1920/);
   assert.match(script,/image\/jpeg/);
 });
+
+test('não usa traços decorativos nem travessões no conteúdo',async()=>{
+  const script=await readFile(new URL('app.js',root),'utf8');
+  const api=await readFile(new URL('api/generate-letter.mjs',root),'utf8');
+  assert.doesNotMatch(html,/class="eyebrow"><span/);
+  assert.doesNotMatch(html,/[—–]/);
+  assert.doesNotMatch(script,/moveTo\(170,1580\)/);
+  assert.match(api,/replace\(\/\[—–\]\/g/);
+});

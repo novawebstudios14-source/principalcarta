@@ -186,7 +186,6 @@ async function createStoryJpg(data,input){
   context.fillText('Com todo o meu amor,',900,signatureY);
   context.font='700 43px Caveat, cursive';context.fillText(input.parentName,900,signatureY+50);
 
-  context.strokeStyle='#e8ccd7';context.lineWidth=2;context.beginPath();context.moveTo(170,1580);context.lineTo(910,1580);context.stroke();
   context.textAlign='center';context.fillStyle='#714256';context.font='600 28px Playfair Display, serif';context.fillText('A Principal',540,1618);
   context.fillStyle='#aa7e91';context.font='700 15px DM Sans, sans-serif';context.fillText('BEBÊ E MAMÃE · MEMÓRIAS QUE ABRAÇAM',540,1648);
   context.fillStyle='#9d7084';context.font='600 18px DM Sans, sans-serif';context.fillText('@aprincipalbebeemamae',540,1802);
