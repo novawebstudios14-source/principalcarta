@@ -29,6 +29,7 @@
       <div class="eyebrow">Experiência A Principal</div>
       <h1 id="page-title">Há sentimentos que merecem virar <em>lembrança.</em></h1>
       <p>Conte um pouquinho sobre vocês. Em poucos instantes, criaremos uma carta única para guardar este capítulo da sua história.</p>
+      <a class="hero-cta" href="#quiz">Criar minha carta agora <span aria-hidden="true">↓</span></a>
 
       <div class="keepsake" aria-hidden="true">
         <div class="keepsake-card keepsake-card-back"></div>
@@ -47,7 +48,7 @@
       </ul>
     </section>
 
-    <section class="experience-shell" aria-label="Criador de carta">
+    <section class="experience-shell" id="quiz" aria-label="Criador de carta">
       <div class="experience-top">
         <span id="step-label">Passo 1 de 3</span>
         <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
@@ -188,9 +189,10 @@
 
         <div class="result-actions">
           <button class="primary-button" id="download-story" type="button">Baixar JPG para o Story <span aria-hidden="true">↓</span></button>
-          <button class="secondary-button" id="share-story" type="button" hidden>Compartilhar imagem</button>
+          <button class="story-share-button" id="share-story" type="button">Compartilhar no Instagram Stories</button>
           <button class="secondary-button restart-button" id="restart" type="button">Criar outra carta</button>
         </div>
+        <p class="share-status" id="share-status" role="status" aria-live="polite">No celular, escolha Instagram na tela de compartilhamento.</p>
       </section>
     </section>
   </main>

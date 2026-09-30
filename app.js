@@ -123,18 +123,18 @@ function wrapText(context,text,maxWidth){
 
 function storyParagraphs(context,text,maxWidth,maxHeight){
   const paragraphs=text.split(/\n\s*\n/);
-  for(let size=42;size>=30;size-=2){
+  for(let size=46;size>=32;size-=2){
     context.font=`500 ${size}px Caveat, cursive`;
-    const lineHeight=Math.round(size*1.28);
+    const lineHeight=Math.round(size*1.24);
     const blocks=paragraphs.map(paragraph=>wrapText(context,paragraph,maxWidth));
     const totalLines=blocks.reduce((sum,lines)=>sum+lines.length,0);
     const height=totalLines*lineHeight+(blocks.length-1)*Math.round(lineHeight*.55);
     if(height<=maxHeight)return {blocks,lineHeight,size,height};
   }
-  context.font='500 30px Caveat, cursive';
-  const lineHeight=38;
+  context.font='500 32px Caveat, cursive';
+  const lineHeight=40;
   const blocks=paragraphs.map(paragraph=>wrapText(context,paragraph,maxWidth));
-  return {blocks,lineHeight,size:30,height:blocks.reduce((sum,lines)=>sum+lines.length,0)*lineHeight+(blocks.length-1)*20};
+  return {blocks,lineHeight,size:32,height:blocks.reduce((sum,lines)=>sum+lines.length,0)*lineHeight+(blocks.length-1)*20};
 }
 
 function loadImage(source){
@@ -173,11 +173,11 @@ async function createStoryJpg(data,input){
   context.fillStyle='#ef2c82';context.fillText(input.recipientName,540,465);
   context.font='500 38px Caveat, cursive';context.fillStyle='#e277a0';context.fillText('♡',540,525);
 
-  const layout=storyParagraphs(context,data.letter,740,820);
+  const layout=storyParagraphs(context,data.letter,760,840);
   context.textAlign='left';context.fillStyle='#613d4d';context.font=`500 ${layout.size}px Caveat, cursive`;
   let y=610;
   for(const lines of layout.blocks){
-    for(const line of lines){context.fillText(line,170,y);y+=layout.lineHeight;}
+    for(const line of lines){context.fillText(line,160,y);y+=layout.lineHeight;}
     y+=Math.round(layout.lineHeight*.55);
   }
 
@@ -196,8 +196,7 @@ async function createStoryJpg(data,input){
   storyBlob=blob;storyUrl=URL.createObjectURL(blob);storyFilename=`carta-para-${safeFilename(input.recipientName)}-story.jpg`;
   $('#story-preview').src=storyUrl;
   const shareButton=$('#share-story');
-  const shareFile=new File([blob],storyFilename,{type:'image/jpeg'});
-  shareButton.hidden=!(navigator.share&&navigator.canShare?.({files:[shareFile]}));
+  shareButton.hidden=false;
 }
 
 async function displayLetter(data,input){
@@ -242,8 +241,16 @@ $('#download-story').addEventListener('click',downloadStory);
 $('#share-story').addEventListener('click',async()=>{
   if(!storyBlob)return;
   const file=new File([storyBlob],storyFilename,{type:'image/jpeg'});
-  if(navigator.canShare?.({files:[file]}))await navigator.share({files:[file],title:'Uma carta para guardar'});
-  else downloadStory();
+  const status=$('#share-status');
+  try{
+    if(navigator.share&&navigator.canShare?.({files:[file]})){
+      await navigator.share({files:[file],title:'Uma carta para guardar',text:'Minha carta criada com A Principal Bebê e Mamãe'});
+      status.textContent='Imagem compartilhada.';
+    }else{
+      downloadStory();
+      status.textContent='Imagem baixada. Abra o Instagram e selecione o arquivo para publicar no Story.';
+    }
+  }catch(error){if(error.name!=='AbortError')status.textContent='Não foi possível abrir o compartilhamento. Use o botão de baixar.';}
 });
 $('#restart').addEventListener('click',()=>{
   form.reset();form.hidden=false;result.hidden=true;document.querySelector('.experience-top').hidden=false;

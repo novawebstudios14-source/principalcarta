@@ -46,3 +46,11 @@ test('não usa traços decorativos nem travessões no conteúdo',async()=>{
   assert.doesNotMatch(script,/moveTo\(170,1580\)/);
   assert.match(api,/replace\(\/\[—–\]\/g/);
 });
+
+test('oferece CTA inicial e compartilhamento para Stories',async()=>{
+  const script=await readFile(new URL('app.js',root),'utf8');
+  assert.match(html,/class="hero-cta" href="#quiz"/);
+  assert.match(html,/id="quiz"/);
+  assert.match(html,/Compartilhar no Instagram Stories/);
+  assert.match(script,/navigator\.share/);
+});
