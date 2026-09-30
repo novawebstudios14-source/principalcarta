@@ -162,7 +162,7 @@
         <div class="result-heading">
           <p class="step-kicker">Criada com carinho</p>
           <h2 id="result-title">Uma lembrança só de vocês.</h2>
-          <p>Guarde, imprima ou releia quando quiser.</p>
+          <p>Sua carta virou uma imagem pronta para publicar no Story.</p>
         </div>
 
         <div class="envelope-scene" id="envelope-scene" aria-hidden="true">
@@ -175,18 +175,21 @@
           </div>
         </div>
 
-        <article class="letter-paper" id="letter-paper">
-          <div class="paper-logo"><img src="./assets/logo.png" alt="A Principal Bebê e Mamãe"></div>
-          <span class="paper-kicker">UMA CARTA PARA</span>
+        <figure class="story-preview-card" id="story-card" hidden>
+          <img id="story-preview" alt="Carta personalizada pronta para publicar no Instagram Stories" width="1080" height="1920">
+          <figcaption>JPG · 1080 × 1920 px · pronto para o Story</figcaption>
+        </figure>
+
+        <div class="visually-hidden" aria-live="polite">
           <h3 id="letter-recipient">Meu bebê</h3>
-          <div class="letter-copy" id="letter-copy"></div>
-          <p class="letter-signature" id="letter-signature"></p>
-          <div class="paper-footer"><span>A Principal</span><small>Bebê e Mamãe · memórias que abraçam</small></div>
-        </article>
+          <div id="letter-copy"></div>
+          <p id="letter-signature"></p>
+        </div>
 
         <div class="result-actions">
-          <button class="primary-button" id="print-letter" type="button">Imprimir ou salvar em PDF <span aria-hidden="true">↓</span></button>
-          <button class="secondary-button" id="restart" type="button">Criar outra carta</button>
+          <button class="primary-button" id="download-story" type="button">Baixar JPG para o Story <span aria-hidden="true">↓</span></button>
+          <button class="secondary-button" id="share-story" type="button" hidden>Compartilhar imagem</button>
+          <button class="secondary-button restart-button" id="restart" type="button">Criar outra carta</button>
         </div>
       </section>
     </section>

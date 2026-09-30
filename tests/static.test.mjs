@@ -29,3 +29,11 @@ test('inclui adaptação mobile e redução de movimento',()=>{
   assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
   assert.match(css,/@media print/);
 });
+
+test('gera imagem JPG no formato vertical de Stories',async()=>{
+  const script=await readFile(new URL('app.js',root),'utf8');
+  assert.match(html,/id="download-story"/);
+  assert.match(html,/width="1080" height="1920"/);
+  assert.match(script,/canvas\.width=1080;canvas\.height=1920/);
+  assert.match(script,/image\/jpeg/);
+});
