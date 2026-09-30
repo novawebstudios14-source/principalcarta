@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f22d85">
+  <meta name="description" content="Crie uma carta carinhosa e personalizada para o seu bebê com A Principal Bebê e Mamãe.">
+  <title>Uma carta para o seu bebê | A Principal Bebê e Mamãe</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="A Principal Bebê e Mamãe — início">
+      <span class="brand-mark"><img src="./assets/logo.png" alt=""></span>
+      <span class="brand-copy"><strong>A Principal</strong><small>Bebê e Mamãe</small></span>
+    </a>
+    <span class="header-note">Um carinho para guardar</span>
+  </header>
+
+  <main id="inicio">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow"><span></span> Experiência A Principal</div>
+      <h1 id="page-title">Há sentimentos que merecem virar <em>lembrança.</em></h1>
+      <p>Conte um pouquinho sobre vocês. Em poucos instantes, criaremos uma carta única para guardar este capítulo da sua história.</p>
+
+      <div class="keepsake" aria-hidden="true">
+        <div class="keepsake-card keepsake-card-back"></div>
+        <div class="keepsake-card keepsake-card-front">
+          <svg viewBox="0 0 120 90" role="presentation"><path d="M17 49C2 30 17 9 38 17c9 4 16 15 22 23 7-10 13-19 23-23 20-8 35 13 20 32-11 14-28 24-43 34-15-10-32-20-43-34Z"/><path d="M38 38c6-7 15-7 22 2 7-9 16-9 22-2"/></svg>
+          <p>Para quem faz<br>meu coração crescer,</p>
+          <strong>meu bebê.</strong>
+          <span>Com amor, para sempre.</span>
+        </div>
+      </div>
+
+      <ul class="trust-list" aria-label="Características da experiência">
+        <li><i>01</i><span>Rápida e delicada</span></li>
+        <li><i>02</i><span>Personalizada para vocês</span></li>
+        <li><i>03</i><span>Feita para guardar</span></li>
+      </ul>
+    </section>
+
+    <section class="experience-shell" aria-label="Criador de carta">
+      <div class="experience-top">
+        <span id="step-label">Passo 1 de 3</span>
+        <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+        <span class="estimated-time">menos de 1 minuto</span>
+      </div>
+
+      <form id="letter-form" novalidate>
+        <section class="form-step is-active" data-step="1" aria-labelledby="step-one-title">
+          <div class="step-icon" aria-hidden="true">♡</div>
+          <p class="step-kicker">Vamos começar</p>
+          <h2 id="step-one-title">Primeiro, queremos conhecer você.</h2>
+          <p class="step-description">Só o essencial para deixar a carta com a sua cara.</p>
+
+          <div class="field-group">
+            <label for="parent-name">Seu nome</label>
+            <input id="parent-name" name="parentName" type="text" autocomplete="name" maxlength="70" placeholder="Como podemos chamar você?" required>
+            <span class="field-error" data-error-for="parentName"></span>
+          </div>
+
+          <div class="field-group">
+            <label for="phone">Seu WhatsApp</label>
+            <div class="phone-field"><span>+55</span><input id="phone" name="phone" type="tel" autocomplete="tel-national" inputmode="numeric" maxlength="15" placeholder="(94) 99999-9999" required></div>
+            <span class="field-hint">Usaremos este número para enviar sua carta e conteúdos autorizados.</span>
+            <span class="field-error" data-error-for="phone"></span>
+          </div>
+
+          <fieldset class="field-group choice-group">
+            <legend>Você está gestante?</legend>
+            <div class="choice-grid">
+              <label class="choice-card"><input type="radio" name="isPregnant" value="yes" required><span class="choice-check">✓</span><strong>Sim, estou gestante</strong><small>Uma carta para quem está chegando</small></label>
+              <label class="choice-card"><input type="radio" name="isPregnant" value="no"><span class="choice-check">✓</span><strong>Não estou gestante</strong><small>Uma carta para o meu pequeno</small></label>
+            </div>
+            <span class="field-error" data-error-for="isPregnant"></span>
+          </fieldset>
+
+          <button class="primary-button" type="button" data-next>Continuar <span aria-hidden="true">→</span></button>
+        </section>
+
+        <section class="form-step" data-step="2" aria-labelledby="step-two-title" hidden>
+          <button class="back-button" type="button" data-back><span aria-hidden="true">←</span> Voltar</button>
+          <div class="step-icon" aria-hidden="true">✦</div>
+          <p class="step-kicker">A história de vocês</p>
+          <h2 id="step-two-title">Agora, conte sobre quem vai receber esse amor.</h2>
+          <p class="step-description" id="conditional-description">Esses detalhes tornam cada palavra mais especial.</p>
+
+          <div id="pregnant-fields" hidden>
+            <div class="field-group">
+              <label for="baby-name-pregnant">Nome do bebê</label>
+              <input id="baby-name-pregnant" name="babyNamePregnant" type="text" maxlength="70" placeholder="Ex.: Helena">
+              <span class="field-error" data-error-for="babyNamePregnant"></span>
+            </div>
+            <div class="two-columns">
+              <div class="field-group">
+                <label for="weeks">Quantas semanas?</label>
+                <input id="weeks" name="weeks" type="number" inputmode="numeric" min="1" max="42" placeholder="Ex.: 24">
+                <span class="field-error" data-error-for="weeks"></span>
+              </div>
+              <fieldset class="field-group compact-choice">
+                <legend>Já tem outros filhos?</legend>
+                <div><label><input type="radio" name="hasChildren" value="yes"><span>Sim</span></label><label><input type="radio" name="hasChildren" value="no"><span>Não</span></label></div>
+                <span class="field-error" data-error-for="hasChildren"></span>
+              </fieldset>
+            </div>
+          </div>
+
+          <div id="parent-fields" hidden>
+            <div class="field-group">
+              <label for="child-name">Nome da criança</label>
+              <input id="child-name" name="childName" type="text" maxlength="70" placeholder="Ex.: Miguel">
+              <span class="field-error" data-error-for="childName"></span>
+            </div>
+            <div class="field-group">
+              <label for="child-age">Quantos anos ela tem?</label>
+              <input id="child-age" name="childAge" type="number" inputmode="numeric" min="0" max="17" placeholder="Ex.: 3">
+              <span class="field-hint">Para bebês com menos de 1 ano, informe 0.</span>
+              <span class="field-error" data-error-for="childAge"></span>
+            </div>
+          </div>
+
+          <button class="primary-button" type="button" data-next>Continuar <span aria-hidden="true">→</span></button>
+        </section>
+
+        <section class="form-step consent-step" data-step="3" aria-labelledby="step-three-title" hidden>
+          <button class="back-button" type="button" data-back><span aria-hidden="true">←</span> Voltar</button>
+          <div class="step-icon" aria-hidden="true">❦</div>
+          <p class="step-kicker">Último detalhe</p>
+          <h2 id="step-three-title">Sua carta está quase pronta.</h2>
+          <p class="step-description">Leia e confirme as autorizações abaixo para criarmos e enviarmos sua lembrança.</p>
+
+          <label class="consent-card">
+            <input type="checkbox" name="privacyConsent" required>
+            <span class="custom-check" aria-hidden="true">✓</span>
+            <span>Aceito receber informações, ofertas e concordo com o <a href="https://aprincipalbb.com.br/termos-de-uso.php" target="_blank" rel="noopener noreferrer">termo de uso</a> e <a href="https://aprincipalbb.com.br/politica-de-privacidade.php" target="_blank" rel="noopener noreferrer">política de privacidade</a>. Estou ciente que meus dados estão protegidos e conforme as informações.</span>
+          </label>
+          <span class="field-error" data-error-for="privacyConsent"></span>
+
+          <label class="consent-card">
+            <input type="checkbox" name="marketingConsent" required>
+            <span class="custom-check" aria-hidden="true">✓</span>
+            <span>Ao me cadastrar, autorizo A Principal Bebê e Mamãe a enviar mensagens promocionais, informativos e ofertas por WhatsApp, SMS e e-mail. Entendo que posso cancelar a qualquer momento respondendo PARAR para SMS/WhatsApp ou clicando em “Cancelar inscrição” nos e-mails. Contato: <a href="mailto:aprincipal.documentos@gmail.com">aprincipal.documentos@gmail.com</a> — <a href="https://aprincipalbb.com.br/roletadagestante" target="_blank" rel="noopener noreferrer">aprincipalbb.com.br/roletadagestante</a>.</span>
+          </label>
+          <span class="field-error" data-error-for="marketingConsent"></span>
+
+          <div class="privacy-note"><span aria-hidden="true">⌁</span><p>Seus dados são usados apenas conforme as autorizações acima. Você poderá solicitar o cancelamento a qualquer momento.</p></div>
+
+          <button class="primary-button create-button" type="submit"><span class="button-label">Criar minha carta</span><span class="button-loader" aria-hidden="true"></span><span aria-hidden="true" class="button-arrow">♥</span></button>
+          <p class="submit-status" id="submit-status" role="status" aria-live="polite"></p>
+        </section>
+      </form>
+
+      <section id="letter-result" class="letter-result" hidden aria-labelledby="result-title">
+        <div class="result-heading">
+          <p class="step-kicker">Criada com carinho</p>
+          <h2 id="result-title">Uma lembrança só de vocês.</h2>
+          <p>Guarde, imprima ou releia quando quiser.</p>
+        </div>
+
+        <div class="envelope-scene" id="envelope-scene" aria-hidden="true">
+          <div class="envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-letter-mini"><span>Para você</span>♡</div>
+            <div class="envelope-front"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">A</div>
+          </div>
+        </div>
+
+        <article class="letter-paper" id="letter-paper">
+          <div class="paper-logo"><img src="./assets/logo.png" alt="A Principal Bebê e Mamãe"></div>
+          <span class="paper-kicker">UMA CARTA PARA</span>
+          <h3 id="letter-recipient">Meu bebê</h3>
+          <div class="letter-copy" id="letter-copy"></div>
+          <p class="letter-signature" id="letter-signature"></p>
+          <div class="paper-footer"><span>A Principal</span><small>Bebê e Mamãe · memórias que abraçam</small></div>
+        </article>
+
+        <div class="result-actions">
+          <button class="primary-button" id="print-letter" type="button">Imprimir ou salvar em PDF <span aria-hidden="true">↓</span></button>
+          <button class="secondary-button" id="restart" type="button">Criar outra carta</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer><span>A Principal Bebê e Mamãe</span><small>Feito para celebrar cada fase.</small></footer>
+</body>
+</html>
