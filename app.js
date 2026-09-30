@@ -6,6 +6,7 @@ const pregnantFields=document.querySelector('#pregnant-fields');
 const parentFields=document.querySelector('#parent-fields');
 const submitStatus=document.querySelector('#submit-status');
 const result=document.querySelector('#letter-result');
+const quiz=document.querySelector('#quiz');
 let currentStep=1;
 let storyBlob=null;
 let storyUrl='';
@@ -14,6 +15,11 @@ let storyFilename='carta-a-principal-story.jpg';
 const $=selector=>document.querySelector(selector);
 const value=name=>form.elements[name]?.value?.trim()||'';
 const checked=name=>form.elements[name]?.checked===true;
+
+const quizObserver=new IntersectionObserver(entries=>{
+  quiz.classList.toggle('is-in-view',entries.some(entry=>entry.isIntersecting));
+},{threshold:.04});
+quizObserver.observe(quiz);
 
 function showStep(number){
   currentStep=number;
