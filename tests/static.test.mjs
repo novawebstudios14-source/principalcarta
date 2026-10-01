@@ -51,7 +51,7 @@ test('oferece CTA inicial e compartilhamento para Stories',async()=>{
   const script=await readFile(new URL('app.js',root),'utf8');
   assert.match(html,/class="hero-cta" href="#quiz"/);
   assert.match(html,/id="quiz"/);
-  assert.match(html,/Compartilhar no Instagram Stories/);
+  assert.match(html,/Compartilhar imagem/);
   assert.match(script,/navigator\.share/);
 });
 
@@ -59,6 +59,6 @@ test('mantém os botões principais visíveis no mobile',async()=>{
   const script=await readFile(new URL('app.js',root),'utf8');
   assert.match(html,/viewport-fit=cover/);
   assert.match(css,/form-step\.is-active>\.primary-button\{position:fixed/);
-  assert.match(css,/result-actions\.is-visible\{position:fixed/);
+  assert.match(css,/result-actions\.is-visible\{position:sticky/);
   assert.match(script,/IntersectionObserver/);
 });
